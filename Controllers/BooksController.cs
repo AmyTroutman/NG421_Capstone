@@ -26,9 +26,11 @@ namespace capstone.Controllers
             return _context.Books.ToArray();   
         }
         [HttpPost]
-        public IActionResult Add(Book book)
+        public Book Add([FromBody]Book book)
         {
-            return null;
+            _context.Books.Add(book);
+            _context.SaveChanges();
+            return book;
         }
     }
 }

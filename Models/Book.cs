@@ -14,7 +14,6 @@ namespace capstone.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Notes { get; set; }
-        public int AuthorID { get; set; }
-        public Author Author { get; set; }
+        public string Author { get; set; }
     }
 }

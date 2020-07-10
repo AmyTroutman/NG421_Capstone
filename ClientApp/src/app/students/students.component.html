@@ -1,6 +1,4 @@
-<h1 id="tableLabel">Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
+<h1 id="tableLabel">Students</h1>
 
 <p *ngIf="!students"><em>Loading...</em></p>
 
@@ -18,3 +16,8 @@
     </tr>
   </tbody>
 </table>
+First Name
+<input [(ngModel)]="newStudent.firstName" name="firstName" />
+Last Name
+<input [(ngModel)]="newStudent.lastName" name="lastName" />
+<button (click)="save()">Save</button>

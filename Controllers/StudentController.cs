@@ -26,5 +26,15 @@ namespace capstone.Controllers
             return students;
             
         }
+        [HttpPost]
+        public Student Post([FromBody]Student student)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                context.Students.Add(student);
+                context.SaveChanges();
+            }
+            return student;
+        }
     }
 }
