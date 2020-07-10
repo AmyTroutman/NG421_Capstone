@@ -13,10 +13,10 @@ namespace capstone.Controllers
     //[Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class BooksController : ControllerBase
+    public class BookController : ControllerBase
     {
         private ApplicationDbContext _context;
-        public BooksController(ApplicationDbContext context) {
+        public BookController(ApplicationDbContext context) {
             _context = context;
         }
 

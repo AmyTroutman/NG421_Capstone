@@ -1,0 +1,27 @@
+<h1 id="tableLabel">Books</h1>
+
+<p *ngIf="!books"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="books">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of books">
+      <td>{{ s.title }}</td>
+      <td>{{ s.author }}</td>
+      <td>{{s.notes}}</td>
+    </tr>
+  </tbody>
+</table>
+Title
+<input [(ngModel)]="newBook.title" name="title" />
+Author
+<input [(ngModel)]="newBook.author" name="author" />
+Notes
+<input [(ngModel)]="newBook.notes" name="notes" />
+<button (click)="save()">Save</button>
