@@ -294,14 +294,34 @@ namespace capstone.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("capstone.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Author");
+                });
+
             modelBuilder.Entity("capstone.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Author")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Notes")
                         .HasColumnType("TEXT");
@@ -311,16 +331,9 @@ namespace capstone.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.HasIndex("AuthorId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Author = "JRR Tolkien",
-                            Notes = "Alright",
-                            Title = "The Hobbit"
-                        });
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("capstone.Models.Student", b =>
@@ -404,6 +417,15 @@ namespace capstone.Migrations
                     b.HasOne("capstone.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("capstone.Models.Book", b =>
+                {
+                    b.HasOne("capstone.Models.Author", "Author")
+                        .WithMany("Books")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
