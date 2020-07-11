@@ -11,6 +11,7 @@ export class BookComponent implements OnInit {
 
   public books: Book[];
   public newBook: Book = {title: '', author: '', notes: ''};
+  searching = false;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -21,6 +22,9 @@ export class BookComponent implements OnInit {
     await this.http.post<Book[]>(this.baseUrl + 'book', this.newBook).toPromise();
     this.newBook = { title: '', author: '', notes: ''};
     this.books = await this.http.get<Book[]>(this.baseUrl + 'book').toPromise();
+  }
+  cancel() {
+    this.searching = false;
   }
 
 }
