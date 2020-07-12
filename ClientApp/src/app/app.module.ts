@@ -23,6 +23,8 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { TeacherComponent } from './teacher/teacher.component';
 import { BookComponent } from './book/book.component';
+import { BookViewComponent } from './book-view/book-view.component';
+import { NewBookComponent } from './new-book/new-book.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { BookComponent } from './book/book.component';
     FetchDataComponent,
     StudentsComponent,
     TeacherComponent,
-    BookComponent
+    BookComponent,
+    BookViewComponent,
+    NewBookComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,7 +51,8 @@ import { BookComponent } from './book/book.component';
         { path: 'students', component: StudentsComponent, canActivate: [AuthorizeGuard] },
         { path: 'teachers', component: TeacherComponent, canActivate: [AuthorizeGuard] },
         { path: 'books', component: BookComponent, canActivate: [AuthorizeGuard]},
-        { path: 'books/{id}', component: FetchDataComponent, canActivate: [AuthorizeGuard]}
+        { path: 'books/{id}', component: BookViewComponent, canActivate: [AuthorizeGuard]},
+        { path: 'newbook', component: NewBookComponent, canActivate: [AuthorizeGuard]}
     ]),
     BrowserAnimationsModule,
     MatTableModule,

@@ -15,7 +15,6 @@ import { MatTableDataSource } from '@angular/material/table';
 export class BookComponent implements OnInit {
 
   public books: Book[];
-  public newBook: Book = {title: '', author: '', notes: ''};
   searching = false;
   dataSource: MatTableDataSource<Book>;
   displayedColumns: string[] = ['id', 'title', 'author', 'notes'];
@@ -32,11 +31,6 @@ export class BookComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     // this.originalFilter = this.dataSource.filterPredicate;
-  }
-  async save() {
-    await this.http.post<Book[]>(this.baseUrl + 'book', this.newBook).toPromise();
-    this.newBook = { title: '', author: '', notes: ''};
-    this.books = await this.http.get<Book[]>(this.baseUrl + 'book').toPromise();
   }
 
   applyFilter(filterValue: any) {
