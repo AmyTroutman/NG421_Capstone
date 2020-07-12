@@ -25,6 +25,13 @@ namespace capstone.Controllers
         {            
             return _context.Books.ToArray();   
         }
+
+        [HttpGet("{id}")]
+        public Book Get(int id) {
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
+            return book;
+        }
+
         [HttpPost]
         public Book Add([FromBody]Book book)
         {
@@ -32,5 +39,6 @@ namespace capstone.Controllers
             _context.SaveChanges();
             return book;
         }
+  
     }
 }
