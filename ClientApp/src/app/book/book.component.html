@@ -48,7 +48,7 @@
 </mat-button-toggle-group>
 
 
-<div class="mat-elevation-z5" align="center" *ngIf="books && searching" mat-sort>
+<div class="mat-elevation-z5" align="center" *ngIf="books && searching">
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
@@ -69,7 +69,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 15, 25]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 15, 25]"></mat-paginator>
 </div>
 
 <div *ngFor="let b of books">

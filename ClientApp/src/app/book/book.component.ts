@@ -19,8 +19,8 @@ export class BookComponent implements OnInit {
   searching = false;
   dataSource: MatTableDataSource<Book>;
   displayedColumns: string[] = ['id', 'title', 'author', 'notes'];
-  @ViewChild(MatSort, {static: true})sort: MatSort;
-  // @ViewChild(MatPaginator, {static: true})paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   originalFilter: (data: any, filter: string) => boolean;
 
 
@@ -30,7 +30,7 @@ export class BookComponent implements OnInit {
     this.books = await this.http.get<Book[]>(this.baseUrl + 'book').toPromise();
     this.dataSource = new MatTableDataSource(this.books);
     this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     // this.originalFilter = this.dataSource.filterPredicate;
   }
   async save() {
