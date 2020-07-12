@@ -20,7 +20,7 @@ export class BookComponent implements OnInit {
   dataSource: MatTableDataSource<Book>;
   displayedColumns: string[] = ['id', 'title', 'author', 'notes'];
   @ViewChild(MatSort, {static: true})sort: MatSort;
-  @ViewChild(MatPaginator, {static: true})paginator: MatPaginator;
+  // @ViewChild(MatPaginator, {static: true})paginator: MatPaginator;
   originalFilter: (data: any, filter: string) => boolean;
 
 
@@ -28,12 +28,10 @@ export class BookComponent implements OnInit {
 
   async ngOnInit() {
     this.books = await this.http.get<Book[]>(this.baseUrl + 'book').toPromise();
-    this.dataSource = new MatTableDataSource(
-      await this.http.get<Book[]>(this.baseUrl + 'book').toPromise()
-    );
+    this.dataSource = new MatTableDataSource(this.books);
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.originalFilter = this.dataSource.filterPredicate;
+    // this.dataSource.paginator = this.paginator;
+    // this.originalFilter = this.dataSource.filterPredicate;
   }
   async save() {
     await this.http.post<Book[]>(this.baseUrl + 'book', this.newBook).toPromise();
@@ -42,28 +40,27 @@ export class BookComponent implements OnInit {
   }
 
   applyFilter(filterValue: any) {
-    // const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   buttonToggle(event: MatButtonToggleChange): void {
     switch (event.value) {
-      case 'title':
-        this.dataSource.filterPredicate = this.filterByTitle;
-        break;
-      case 'author':
-        this.dataSource.filterPredicate = this.filterByAuthor;
-        break;
+      // case 'title':
+      //   this.dataSource.filterPredicate = this.filterByTitle;
+      //   break;
+      // case 'author':
+      //   this.dataSource.filterPredicate = this.filterByAuthor;
+      //   break;
       default:
         this.dataSource.filterPredicate = this.originalFilter;
         break;
     }
   }
-  private filterByTitle(data: any, filter: string): boolean {
-    return data.title === filter;
-  }
-  private filterByAuthor(data: any, filter: string): boolean {
-    return data.author === filter;
-  }
+  // private filterByTitle(data: any, filter: string): boolean {
+  //   return data.title === filter;
+  // }
+  // private filterByAuthor(data: any, filter: string): boolean {
+  //   return data.author === filter;
+  // }
 
   cancel() {
     this.searching = false;

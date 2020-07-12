@@ -40,7 +40,7 @@
     <input (focus)="searching = true" (keyup)="applyFilter($event.target.value)" matInput>
 </mat-form-field>
 
-<mat-button-toggle-group value="all" (change)="buttonToggle($event)" *ngIf="searching">
+ <mat-button-toggle-group value="all" (change)="buttonToggle($event)" *ngIf="searching"> 
     <mat-button-toggle value="title">Title</mat-button-toggle>
     <mat-button-toggle value="author">Author</mat-button-toggle>
     <mat-button-toggle value="all">All</mat-button-toggle>
@@ -48,7 +48,7 @@
 </mat-button-toggle-group>
 
 
-<div class="mat-elevation-z5" align="center" *ngIf="books && searching">
+<div class="mat-elevation-z5" align="center" *ngIf="books && searching" mat-sort>
     <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
@@ -69,12 +69,12 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[3, 6, 12]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 15, 25]" showFirstLastButtons></mat-paginator>
 </div>
 
 <div *ngFor="let b of books">
   <div *ngIf="!searching" class="card" style="width: 18rem;">
-    <div class="card-body">
+    <div class="card-body" routerLink="/books/{id}">
       <h5 class="card-title">{{b.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{b.author}}</h6>
       <p class="card-text">{{b.notes}}</p>
