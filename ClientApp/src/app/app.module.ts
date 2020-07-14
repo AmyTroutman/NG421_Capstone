@@ -51,7 +51,7 @@ import { NewBookComponent } from './new-book/new-book.component';
         { path: 'students', component: StudentsComponent, canActivate: [AuthorizeGuard] },
         { path: 'teachers', component: TeacherComponent, canActivate: [AuthorizeGuard] },
         { path: 'books', component: BookComponent, canActivate: [AuthorizeGuard]},
-        { path: 'books/{id}', component: BookViewComponent, canActivate: [AuthorizeGuard]},
+        { path: 'books/**', component: BookViewComponent, canActivate: [AuthorizeGuard]},
         { path: 'newbook', component: NewBookComponent, canActivate: [AuthorizeGuard]}
     ]),
     BrowserAnimationsModule,

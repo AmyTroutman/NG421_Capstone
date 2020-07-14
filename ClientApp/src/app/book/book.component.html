@@ -66,12 +66,14 @@
 
 <div *ngFor="let b of books">
   <div *ngIf="!searching" class="card" style="width: 18rem;">
-    <div class="card-body" routerLink="/books/{id}">
+    <div class="card-body">
       <h5 class="card-title">{{b.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{b.author}}</h6>
       <p class="card-text">{{b.notes}}</p>
+      <p class="card-text">{{b.id}}</p>
       <a href="#" class="card-link">Series</a>
       <a href="#" class="card-link">Another link</a>
     </div>
   </div>
 </div>
+

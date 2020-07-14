@@ -10,6 +10,7 @@ export class NewBookComponent implements OnInit {
 
   public newBook: Book = {title: '', author: '', notes: ''};
   public books: Book[];
+  created = false;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 

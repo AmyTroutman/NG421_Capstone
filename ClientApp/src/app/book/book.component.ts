@@ -21,7 +21,8 @@ export class BookComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   originalFilter: (data: any, filter: string) => boolean;
-
+  id: number;
+  book: Book;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -66,4 +67,5 @@ interface Book {
   title: string;
   author: string;
   notes: string;
+  id: number;
 }
